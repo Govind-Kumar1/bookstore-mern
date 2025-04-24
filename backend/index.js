@@ -7,8 +7,8 @@ import cors from 'cors';
 
 const app = express();
 dotenv.config();
-const PORT = process.env.PORT || 5001; 
-const MONGOURL = process.env.MONGO_URL || 'mongodb://localhost:27017/mydatabase';
+const PORT = process.env.PORT ; 
+const MONGOURL = process.env.MONGO_URL ;
   
 // Middleware for parsing request body
 app.use(express.json());
@@ -33,6 +33,13 @@ app.get('/', (request, response) => {
 });
 
 app.use('/books', booksRoute);
+app.use(
+  cors({
+    origin: 'https://bookstore-mern-sepia.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
 
 mongoose
   .connect(MONGOURL)
