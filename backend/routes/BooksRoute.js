@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/',async(req,res) =>{
     
     try{ 
-        if(!req.body.title||
+        if(!req.body.title|| 
             !req.body.author || 
             !req.body.publishYear  
            ){ 
